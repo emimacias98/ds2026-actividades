@@ -1,0 +1,81 @@
+:root{
+    --color-fondo:#f0f2f5;
+    --color-primario:#2c3e50;
+    --color-acento:chocolate;
+    --borde-redondeado:12px;
+    --sombra-suave: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav ul {
+    display: flex;          
+    list-style: none;       
+    gap: 25px;              
+    padding: 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+h1 {
+    color:black;
+    font-size: 2rem;
+}
+
+header {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 30px 10px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    gap: 20px;              
+}
+
+p{
+    margin-bottom: 15px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    color: black;
+}
+
+.link-menu {
+    color: black;
+    text-decoration: underline;
+}
+
+h2{
+    font-style: none;
+    margin-bottom: 20px;
+    color: var(--color-primario)
+}
+
+body {
+    background-color: var(--color-fondo);
+}
+
+main {
+    background-color: white;
+    max-width: 800px;
+    margin: 40px auto; 
+    padding: 40px;
+    border-radius: var(--borde-redondeado);
+    box-shadow: var(--sombra-suave);
+    text-align: center;
+}
+.stackoverflow{
+    color: black;
+    text-decoration: underline;
+}
