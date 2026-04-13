@@ -16,7 +16,7 @@ nav ul {
     display: flex;          
     list-style: none;       
     gap: 25px;              
-    padding: 0;
+    padding: 10px;
 }
 
 nav ul li a {
@@ -52,6 +52,15 @@ ul {
 }
 
 .link-menu {
+    background-color: cornflowerblue;
+    padding: 10px;
+    border-radius: var(--borde-redondeado);
+    box-shadow: var(--sombra-suave);
+    color: black;
+    text-decoration: underline;
+}
+
+.link{
     color: black;
     text-decoration: underline;
 }
@@ -75,6 +84,13 @@ main {
     box-shadow: var(--sombra-suave);
     text-align: center;
 }
+
+footer p {
+    font-style: italic; /* O el estilo que quieras */
+    font-size: 0.9rem;
+    color: var(--color-primario);
+}
+
 .stackoverflow{
     color: black;
     text-decoration: underline;
