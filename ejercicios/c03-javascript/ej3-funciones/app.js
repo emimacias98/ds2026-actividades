@@ -10,6 +10,7 @@ crédito
 medio de pago. Mostrar cada resultado en consola con template
 literals: "Monto: $X | Pago: Y | Final: $Z" */ 
 
+
 function calcularPrecioFinal(monto, medioPago){
     if(monto < 200) {
         return monto;
