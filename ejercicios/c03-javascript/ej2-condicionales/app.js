@@ -1,4 +1,5 @@
 
+
 function clasificarNota(nota) {
     if (nota < 4) {
         return "Desaprobado";
