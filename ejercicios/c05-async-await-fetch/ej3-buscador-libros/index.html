@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3 - Buscador de Libros</title>
+    <style>
+        .tarjeta-libro { border: 1px solid #ccc; padding: 10px; margin: 10px 0; border-radius: 8px; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Buscador de Libros (Open Library)</h1>
+    
+    <input type="text" id="input-busqueda" placeholder="Ingrese título del libro...">
+    <button id="btn-buscar">Buscar</button>
+
+    <p id="mensaje-error" class="error" style="display: none;"></p>
+    
+    <div id="resultados">
+        <!-- Las tarjetas se generarán aquí -->
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
