@@ -34,11 +34,9 @@ async function mostrarEnPantalla() {
     const usuarios = await obtenerUsuarios();
 
     usuarios.forEach(user => {
-        // Creamos el elemento <li> por cada usuario
         const li = document.createElement('li');
         li.textContent = `${user.name} - ${user.email}`;
         
-        // Lo agregamos a la lista <ul>[cite: 3]
         listaUl.appendChild(li);
     });
 }
