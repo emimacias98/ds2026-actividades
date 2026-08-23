@@ -1,0 +1,53 @@
+### Listar libros
+GET http://localhost:3000/api/libros
+
+### Obtener libro existente
+GET http://localhost:3000/api/libros/1
+
+### Obtener libro inexistente 404
+GET http://localhost:3000/api/libros/999
+
+### Listar autores
+GET http://localhost:3000/api/autores
+
+### Obtener autor existente
+GET http://localhost:3000/api/autores/1
+
+### Obtener autor inexistente 404
+GET http://localhost:3000/api/autores/999
+
+### Crear autor
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Isabel Allende",
+  "nacionalidad": "Chilena",
+  "nacimiento": 1942
+}
+
+### Actualizar autor existente
+PUT http://localhost:3000/api/autores/1
+Content-Type: application/json
+
+{
+  "nombre": "Jorge Luis Borges",
+  "nacionalidad": "Argentina",
+  "nacimiento": 1899
+}
+
+### Actualizar autor inexistente 404
+PUT http://localhost:3000/api/autores/999
+Content-Type: application/json
+
+{
+  "nombre": "Autor inexistente",
+  "nacionalidad": "Sin datos",
+  "nacimiento": 2000
+}
+
+### Eliminar autor existente
+DELETE http://localhost:3000/api/autores/2
+
+### Eliminar autor inexistente 404
+DELETE http://localhost:3000/api/autores/999
