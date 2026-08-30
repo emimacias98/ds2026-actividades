@@ -1,0 +1,123 @@
+@baseUrl = http://localhost:3000
+
+### Listar libros con autor
+GET {{baseUrl}}/api/libros
+
+### Detalle de libro con autor y categorias
+GET {{baseUrl}}/api/libros/1
+
+### 400 - id de libro invalido
+GET {{baseUrl}}/api/libros/abc
+
+### 404 - libro inexistente
+GET {{baseUrl}}/api/libros/999
+
+### Crear libro
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "La casa de los espiritus",
+  "precio": 21000,
+  "imagen": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=400&q=80",
+  "descripcion": "Novela latinoamericana contemporanea.",
+  "disponible": true,
+  "autorId": 3,
+  "categoriasIds": [2, 3]
+}
+
+### 400 - crear libro sin titulo
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "precio": 5000,
+  "imagen": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=400&q=80",
+  "descripcion": "Libro sin titulo",
+  "autorId": 1,
+  "categoriasIds": [1]
+}
+
+### 409 - crear libro con autor inexistente
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Libro huerfano",
+  "precio": 5000,
+  "imagen": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=400&q=80",
+  "descripcion": "No deberia guardarse.",
+  "autorId": 999,
+  "categoriasIds": [1]
+}
+
+### 404 - actualizar libro inexistente
+PUT {{baseUrl}}/api/libros/999
+Content-Type: application/json
+
+{
+  "titulo": "Libro inexistente"
+}
+
+### Listar autores con libros
+GET {{baseUrl}}/api/autores
+
+### Obtener autor existente
+GET {{baseUrl}}/api/autores/1
+
+### 400 - id de autor invalido
+GET {{baseUrl}}/api/autores/abc
+
+### 404 - autor inexistente
+GET {{baseUrl}}/api/autores/999
+
+### Crear autor
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Isabel Allende",
+  "nacionalidad": "Chilena",
+  "nacimiento": 1942
+}
+
+### 400 - crear autor sin nombre
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{
+  "nacionalidad": "Argentina",
+  "nacimiento": 1900
+}
+
+### 409 - autor duplicado
+POST {{baseUrl}}/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Jorge Luis Borges",
+  "nacionalidad": "Argentina",
+  "nacimiento": 1899
+}
+
+### Actualizar autor existente
+PUT {{baseUrl}}/api/autores/3
+Content-Type: application/json
+
+{
+  "nacionalidad": "Colombiana"
+}
+
+### 404 - actualizar autor inexistente
+PUT {{baseUrl}}/api/autores/999
+Content-Type: application/json
+
+{
+  "nombre": "Autor inexistente"
+}
+
+### 409 - borrar autor con libros relacionados
+DELETE {{baseUrl}}/api/autores/1
+
+### Borrar libro existente
+DELETE {{baseUrl}}/api/libros/3
