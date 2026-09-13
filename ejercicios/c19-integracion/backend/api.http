@@ -1,0 +1,71 @@
+@baseUrl = http://localhost:3000
+
+### Login admin
+# @name loginAdmin
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@libreria.com",
+  "password": "Admin123!"
+}
+
+### Login cliente
+# @name loginCliente
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "cliente@libreria.com",
+  "password": "Cliente123!"
+}
+
+### Catalogo real desde backend
+GET {{baseUrl}}/api/libros
+
+### Backend 404 JSON
+GET {{baseUrl}}/api/ruta-inexistente
+
+### 401 alta sin token
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Libro sin token",
+  "precio": 21000,
+  "imagen": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=400&q=80",
+  "descripcion": "No deberia guardarse.",
+  "disponible": true,
+  "autorId": 3,
+  "categoriasIds": [2, 3]
+}
+
+### 403 alta con CLIENTE
+POST {{baseUrl}}/api/libros
+Authorization: Bearer {{loginCliente.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "titulo": "Libro cliente",
+  "precio": 21000,
+  "imagen": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=400&q=80",
+  "descripcion": "No deberia guardarse.",
+  "disponible": true,
+  "autorId": 3,
+  "categoriasIds": [2, 3]
+}
+
+### 201 alta con ADMIN
+POST {{baseUrl}}/api/libros
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "titulo": "La ciudad y los perros",
+  "precio": 22000,
+  "imagen": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=400&q=80",
+  "descripcion": "Novela latinoamericana para probar integracion.",
+  "disponible": true,
+  "autorId": 3,
+  "categoriasIds": [2, 3]
+}

@@ -1,0 +1,24 @@
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import { librosIniciales } from './data/libro';
+import Catalogo from './pages/Catalogo';
+import Home from './pages/Home';
+import LibroDetalle from './pages/LibroDetalle';
+import LibroNuevo from './pages/LibroNuevo';
+import Login from './pages/Login';
+
+function App() {
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home libros={librosIniciales} />} />
+        <Route path="/catalogo" element={<Catalogo />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/libros/nuevo" element={<LibroNuevo />} />
+        <Route path="/libros/:id" element={<LibroDetalle />} />
+      </Routes>
+    </Layout>
+  );
+}
+
+export default App;

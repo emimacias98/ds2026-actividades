@@ -1,0 +1,137 @@
+@baseUrl = http://localhost:3000
+
+### 1 - Registro cliente
+POST {{baseUrl}}/api/auth/registro
+Content-Type: application/json
+
+{
+  "email": "nuevo@libreria.com",
+  "password": "Nuevo1234",
+  "nombre": "Nuevo Cliente"
+}
+
+### 2 - 409 registro repetido
+POST {{baseUrl}}/api/auth/registro
+Content-Type: application/json
+
+{
+  "email": "admin@libreria.com",
+  "password": "Admin1234",
+  "nombre": "Admin Repetido"
+}
+
+### 3 - Login admin
+# @name loginAdmin
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@libreria.com",
+  "password": "Admin123!"
+}
+
+### 4 - Login cliente
+# @name loginCliente
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "cliente@libreria.com",
+  "password": "Cliente123!"
+}
+
+### 5 - 401 login email inexistente
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "nadie@libreria.com",
+  "password": "Admin123!"
+}
+
+### 6 - 401 login password incorrecta
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@libreria.com",
+  "password": "mal"
+}
+
+### 7 - 401 yo sin token
+GET {{baseUrl}}/api/auth/yo
+
+### 8 - Yo con token admin
+GET {{baseUrl}}/api/auth/yo
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+
+### 9 - Lectura publica libros
+GET {{baseUrl}}/api/libros
+
+### 10 - 401 crear libro sin token
+POST {{baseUrl}}/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Libro sin token",
+  "precio": 21000,
+  "imagen": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=400&q=80",
+  "descripcion": "No deberia guardarse.",
+  "disponible": true,
+  "autorId": 3,
+  "categoriasIds": [2, 3]
+}
+
+### 11 - 403 crear libro con CLIENTE
+POST {{baseUrl}}/api/libros
+Authorization: Bearer {{loginCliente.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "titulo": "Libro cliente",
+  "precio": 21000,
+  "imagen": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=400&q=80",
+  "descripcion": "No deberia guardarse.",
+  "disponible": true,
+  "autorId": 3,
+  "categoriasIds": [2, 3]
+}
+
+### 12 - 201 crear libro con ADMIN
+POST {{baseUrl}}/api/libros
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "titulo": "La casa de los espiritus",
+  "precio": 21000,
+  "imagen": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=400&q=80",
+  "descripcion": "Novela latinoamericana contemporanea.",
+  "disponible": true,
+  "autorId": 3,
+  "categoriasIds": [2, 3]
+}
+
+### 13 - 400 crear libro sin titulo
+POST {{baseUrl}}/api/libros
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "precio": 5000,
+  "imagen": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=400&q=80",
+  "descripcion": "Libro sin titulo",
+  "autorId": 1,
+  "categoriasIds": [1]
+}
+
+### 14 - Escritura de autores solo ADMIN
+POST {{baseUrl}}/api/autores
+Authorization: Bearer {{loginAdmin.response.body.$.token}}
+Content-Type: application/json
+
+{
+  "nombre": "Isabel Allende",
+  "nacionalidad": "Chilena",
+  "nacimiento": 1942
+}
